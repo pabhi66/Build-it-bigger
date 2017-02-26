@@ -1,3 +1,6 @@
+# Build-it-bigger
+Joke telling app using gradle and Google Cloud Module.  The app consists of two version Paid and Free.  This project is part of the Udacity Android Developer Nano-Degree Course.
+
 # Gradle for Android and Java Final Project
 
 In this project, you will create an app with multiple flavors that uses
