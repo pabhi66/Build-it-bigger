@@ -7,12 +7,10 @@ import android.widget.TextView;
 
 public class JokerProvider extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joker_provider);
-
 
         TextView jokeView = (TextView) findViewById(R.id.joke);
 
@@ -22,6 +20,5 @@ public class JokerProvider extends AppCompatActivity {
         if(joke != null){
             jokeView.setText(joke);
         }
-
     }
 }
