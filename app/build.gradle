@@ -5,7 +5,8 @@ android {
         config {
             keyAlias 'udacity'
             keyPassword 'password'
-            storeFile file('/Users/abhi/Desktop/FinalProject/keystore.jks')
+            storeFile file('/Users/abhi/Google Drive/School/Udacity/NanoDegree Android/Build it Bigger/keystore.jks')
+
             storePassword 'password'
         }
     }
@@ -26,19 +27,43 @@ android {
             signingConfig signingConfigs.config
         }
     }
-    productFlavors {
-        free {
+
+    productFlavors{
+        free{
             applicationId "com.udacity.gradle.builditbigger.free"
             versionName "1.0­free"
+            buildConfigField 'boolean', 'EXTRA_FEATURES', "false"
         }
-
-        paid {
+        paid{
             applicationId "com.udacity.gradle.builditbigger.paid"
             versionName "1.0­paid"
+            buildConfigField 'boolean', 'EXTRA_FEATURES', "true"
         }
     }
+
     dexOptions {
         javaMaxHeapSize "4g"
+    }
+
+    task testProject {
+        dependsOn(['startDevServer','runMyTests','shutdownDevServer'])
+    }
+
+    task startDevServer {
+        dependsOn ':backend:appengineRun'
+        evaluationDependsOn(":backend")
+        project(':backend').appengine.daemon = true
+    }
+
+    task runMyTests {
+        dependsOn ':app:connectedAndroidTest'
+        mustRunAfter "startDevServer"
+    }
+
+    task shutdownDevServer {
+        dependsOn ':backend:appengineStop'
+        mustRunAfter "runMyTests"
+
     }
 }
 
